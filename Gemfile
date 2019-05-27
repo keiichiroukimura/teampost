@@ -32,6 +32,7 @@ gem 'seed-fu', '~> 2.3'
 gem 'devise'
 
 group :development, :test do
+  gem 'rails-erd'
   gem 'awesome_print'
   gem 'bullet'
   gem 'byebug', platform: :mri
