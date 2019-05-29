@@ -1,16 +1,18 @@
 Rails.application.routes.draw do
   root 'statics#top'
   get :dashboard, to: 'teams#dashboard'
-
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
     passwords: 'users/passwords'
   }
   resource :user
-  
+  #get 'profile', to: :index, controller: 'users'
   resources :teams do
-    resources :assigns, only: %w(create destroy)
+    resources :assigns, only: %w(create destroy) do
+      patch :change_owner, on: :member, controller: :teams
+      #patch :change_owner, on: :member
+    end
     resources :agendas, shallow: true do
       resources :articles do
         resources :comments
